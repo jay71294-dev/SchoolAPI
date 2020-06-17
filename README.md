@@ -1,7 +1,7 @@
 # SchoolAPI
 # A setup of SchoolAPI with the features.
 # API Guidelines
-![Module 1 IS 690](https://user-images.githubusercontent.com/55039024/84953863-51c17b80-b0c2-11ea-8c4d-21ab51bb2e60.png
+
 # Data Dictionary
 ![data dictionary](https://user-images.githubusercontent.com/55039024/84953920-6bfb5980-b0c2-11ea-9873-f5f2492ce7db.png))
 # ER Diagram
