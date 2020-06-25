@@ -1,19 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using SchoolAPI.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.HttpOverrides;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NLog;
 using System.IO;
-using Microsoft.Extensions.Logging;
 
 namespace SchoolAPI
 {
@@ -31,6 +24,8 @@ namespace SchoolAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.ConfigureLoggerService();
+            services.ConfigureSqlContext(Configuration);
+            services.ConfigureRepositoryManager();
             services.AddControllers();
         }
 
@@ -41,8 +36,6 @@ namespace SchoolAPI
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            app.UseHttpsRedirection();
 
             app.UseRouting();
 
