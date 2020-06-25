@@ -4,14 +4,16 @@ using Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace SchoolAPI.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    partial class RepositoryContextModelSnapshot : ModelSnapshot
+    [Migration("20200625011501_InitialData")]
+    partial class InitialData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -323,12 +325,6 @@ namespace SchoolAPI.Migrations
                             Id = new Guid("021ca3c1-0deb-4afd-ae94-2159a8479811"),
                             OrganizationId = new Guid("3d490a70-94ce-4d15-9494-5248280c2ce3"),
                             UserName = "jay71237"
-                        },
-                        new
-                        {
-                            Id = new Guid("021ca3c1-0deb-4afd-ae94-2159a8479812"),
-                            OrganizationId = new Guid("3d490a70-94ce-4d15-9494-5248280c2ce3"),
-                            UserName = "jp56780"
                         });
                 });
 
