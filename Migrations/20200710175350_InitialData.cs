@@ -71,7 +71,9 @@ namespace SchoolAPI.Migrations
                 columns: table => new
                 {
                     OrganizationId = table.Column<Guid>(nullable: false),
-                    OrgName = table.Column<string>(maxLength: 60, nullable: false)
+                    OrgName = table.Column<string>(maxLength: 60, nullable: false),
+                    City = table.Column<string>(nullable: true),
+                    Country = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -185,11 +187,11 @@ namespace SchoolAPI.Migrations
 
             migrationBuilder.InsertData(
                 table: "Organizations",
-                columns: new[] { "OrganizationId", "OrgName" },
+                columns: new[] { "OrganizationId", "City", "Country", "OrgName" },
                 values: new object[,]
                 {
-                    { new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), "xyz org" },
-                    { new Guid("3d490a70-94ce-4d15-9494-5248280c2ce3"), "lmnop org" }
+                    { new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), "Bloomfield", "USA", "xyz org" },
+                    { new Guid("3d490a70-94ce-4d15-9494-5248280c2ce3"), "Lusaka", "ZM", "lmnop org" }
                 });
 
             migrationBuilder.InsertData(
@@ -204,17 +206,13 @@ namespace SchoolAPI.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "UserId", "AssignmentId", "AssignmentSubmissionId", "CourseSectionId", "CoursesId", "OrganizationId", "SectionEnrollmentId", "UserName" },
-                values: new object[] { new Guid("80abbca8-664d-4b20-b5de-024705497d4a"), null, null, null, null, new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), null, "jpatel" });
-
-            migrationBuilder.InsertData(
-                table: "Users",
-                columns: new[] { "UserId", "AssignmentId", "AssignmentSubmissionId", "CourseSectionId", "CoursesId", "OrganizationId", "SectionEnrollmentId", "UserName" },
-                values: new object[] { new Guid("86dba8c0-d178-41e7-938c-ed49778fb52a"), null, null, null, null, new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), null, "jay71294" });
-
-            migrationBuilder.InsertData(
-                table: "Users",
-                columns: new[] { "UserId", "AssignmentId", "AssignmentSubmissionId", "CourseSectionId", "CoursesId", "OrganizationId", "SectionEnrollmentId", "UserName" },
-                values: new object[] { new Guid("021ca3c1-0deb-4afd-ae94-2159a8479811"), null, null, null, null, new Guid("3d490a70-94ce-4d15-9494-5248280c2ce3"), null, "jay71237" });
+                values: new object[,]
+                {
+                    { new Guid("80abbca8-664d-4b20-b5de-024705497d4a"), null, null, null, null, new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), null, "jpatel" },
+                    { new Guid("86dba8c0-d178-41e7-938c-ed49778fb52a"), null, null, null, null, new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), null, "jay71294" },
+                    { new Guid("021ca3c1-0deb-4afd-ae94-2159a8479811"), null, null, null, null, new Guid("3d490a70-94ce-4d15-9494-5248280c2ce3"), null, "jay71237" },
+                    { new Guid("021ca3c1-0deb-4afd-ae94-2159a8479812"), null, null, null, null, new Guid("3d490a70-94ce-4d15-9494-5248280c2ce3"), null, "jp56780" }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_AssignmentId",
