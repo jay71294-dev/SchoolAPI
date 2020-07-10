@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace SchoolAPI.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    [Migration("20200710175350_InitialData")]
+    [Migration("20200710225741_InitialData")]
     partial class InitialData
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -219,7 +219,7 @@ namespace SchoolAPI.Migrations
                         {
                             Id = new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"),
                             City = "Bloomfield",
-                            Country = "USA",
+                            Country = "Austria",
                             OrgName = "xyz org"
                         },
                         new
@@ -290,16 +290,23 @@ namespace SchoolAPI.Migrations
                     b.Property<Guid?>("CoursesId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("OrganizationId")
+                    b.Property<Guid?>("OrganizationId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("SectionEnrollmentId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("UserId")
+                        .HasColumnName("UserId1")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("UserName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(30)")
-                        .HasMaxLength(30);
+                        .HasColumnType("nvarchar(60)")
+                        .HasMaxLength(60);
+
+                    b.Property<string>("hobby")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -315,38 +322,34 @@ namespace SchoolAPI.Migrations
 
                     b.HasIndex("SectionEnrollmentId");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("Users");
 
                     b.HasData(
                         new
                         {
                             Id = new Guid("80abbca8-664d-4b20-b5de-024705497d4a"),
-                            OrganizationId = new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"),
-                            UserName = "jpatel"
+                            UserName = "rock007",
+                            hobby = "Clubbing"
                         },
                         new
                         {
                             Id = new Guid("86dba8c0-d178-41e7-938c-ed49778fb52a"),
-                            OrganizationId = new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"),
-                            UserName = "jay71294"
+                            UserName = "hulk123",
+                            hobby = "Love Volleyball"
                         },
                         new
                         {
                             Id = new Guid("021ca3c1-0deb-4afd-ae94-2159a8479811"),
-                            OrganizationId = new Guid("3d490a70-94ce-4d15-9494-5248280c2ce3"),
-                            UserName = "jay71237"
-                        },
-                        new
-                        {
-                            Id = new Guid("021ca3c1-0deb-4afd-ae94-2159a8479812"),
-                            OrganizationId = new Guid("3d490a70-94ce-4d15-9494-5248280c2ce3"),
-                            UserName = "jp56780"
+                            UserName = "Dani95",
+                            hobby = "Adventure trips"
                         });
                 });
 
             modelBuilder.Entity("Entities.Models.User", b =>
                 {
-                    b.HasOne("Entities.Models.Assignment", "Assignment")
+                    b.HasOne("Entities.Models.Assignment", null)
                         .WithMany("Users")
                         .HasForeignKey("AssignmentId");
 
@@ -354,23 +357,25 @@ namespace SchoolAPI.Migrations
                         .WithMany("Users")
                         .HasForeignKey("AssignmentSubmissionId");
 
-                    b.HasOne("Entities.Models.CourseSection", "CourseSection")
+                    b.HasOne("Entities.Models.CourseSection", null)
                         .WithMany("Users")
                         .HasForeignKey("CourseSectionId");
 
-                    b.HasOne("Entities.Models.Courses", "Courses")
+                    b.HasOne("Entities.Models.Courses", null)
                         .WithMany("Users")
                         .HasForeignKey("CoursesId");
 
-                    b.HasOne("Entities.Models.Organization", "Organization")
+                    b.HasOne("Entities.Models.Organization", null)
                         .WithMany("Users")
-                        .HasForeignKey("OrganizationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("OrganizationId");
 
-                    b.HasOne("Entities.Models.SectionEnrollment", "SectionEnrollment")
+                    b.HasOne("Entities.Models.SectionEnrollment", null)
                         .WithMany("Users")
                         .HasForeignKey("SectionEnrollmentId");
+
+                    b.HasOne("Entities.Models.User", null)
+                        .WithMany("Users")
+                        .HasForeignKey("UserId");
                 });
 #pragma warning restore 612, 618
         }

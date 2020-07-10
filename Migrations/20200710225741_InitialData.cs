@@ -100,13 +100,15 @@ namespace SchoolAPI.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<Guid>(nullable: false),
-                    UserName = table.Column<string>(maxLength: 30, nullable: false),
-                    OrganizationId = table.Column<Guid>(nullable: false),
+                    UserName = table.Column<string>(maxLength: 60, nullable: false),
+                    hobby = table.Column<string>(nullable: true),
                     AssignmentId = table.Column<Guid>(nullable: true),
-                    CoursesId = table.Column<Guid>(nullable: true),
+                    AssignmentSubmissionId = table.Column<Guid>(nullable: true),
                     CourseSectionId = table.Column<Guid>(nullable: true),
+                    CoursesId = table.Column<Guid>(nullable: true),
+                    OrganizationId = table.Column<Guid>(nullable: true),
                     SectionEnrollmentId = table.Column<Guid>(nullable: true),
-                    AssignmentSubmissionId = table.Column<Guid>(nullable: true)
+                    UserId1 = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -140,12 +142,18 @@ namespace SchoolAPI.Migrations
                         column: x => x.OrganizationId,
                         principalTable: "Organizations",
                         principalColumn: "OrganizationId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Users_SectionEnrollments_SectionEnrollmentId",
                         column: x => x.SectionEnrollmentId,
                         principalTable: "SectionEnrollments",
                         principalColumn: "SectionID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Users_Users_UserId1",
+                        column: x => x.UserId1,
+                        principalTable: "Users",
+                        principalColumn: "UserId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -190,7 +198,7 @@ namespace SchoolAPI.Migrations
                 columns: new[] { "OrganizationId", "City", "Country", "OrgName" },
                 values: new object[,]
                 {
-                    { new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), "Bloomfield", "USA", "xyz org" },
+                    { new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), "Bloomfield", "Austria", "xyz org" },
                     { new Guid("3d490a70-94ce-4d15-9494-5248280c2ce3"), "Lusaka", "ZM", "lmnop org" }
                 });
 
@@ -205,13 +213,12 @@ namespace SchoolAPI.Migrations
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "UserId", "AssignmentId", "AssignmentSubmissionId", "CourseSectionId", "CoursesId", "OrganizationId", "SectionEnrollmentId", "UserName" },
+                columns: new[] { "UserId", "AssignmentId", "AssignmentSubmissionId", "CourseSectionId", "CoursesId", "OrganizationId", "SectionEnrollmentId", "UserId1", "UserName", "hobby" },
                 values: new object[,]
                 {
-                    { new Guid("80abbca8-664d-4b20-b5de-024705497d4a"), null, null, null, null, new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), null, "jpatel" },
-                    { new Guid("86dba8c0-d178-41e7-938c-ed49778fb52a"), null, null, null, null, new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), null, "jay71294" },
-                    { new Guid("021ca3c1-0deb-4afd-ae94-2159a8479811"), null, null, null, null, new Guid("3d490a70-94ce-4d15-9494-5248280c2ce3"), null, "jay71237" },
-                    { new Guid("021ca3c1-0deb-4afd-ae94-2159a8479812"), null, null, null, null, new Guid("3d490a70-94ce-4d15-9494-5248280c2ce3"), null, "jp56780" }
+                    { new Guid("80abbca8-664d-4b20-b5de-024705497d4a"), null, null, null, null, null, null, null, "rock007", "Clubbing" },
+                    { new Guid("86dba8c0-d178-41e7-938c-ed49778fb52a"), null, null, null, null, null, null, null, "hulk123", "Love Volleyball" },
+                    { new Guid("021ca3c1-0deb-4afd-ae94-2159a8479811"), null, null, null, null, null, null, null, "Dani95", "Adventure trips" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -243,6 +250,11 @@ namespace SchoolAPI.Migrations
                 name: "IX_Users_SectionEnrollmentId",
                 table: "Users",
                 column: "SectionEnrollmentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_UserId1",
+                table: "Users",
+                column: "UserId1");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
