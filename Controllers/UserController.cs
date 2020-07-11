@@ -9,13 +9,13 @@ namespace CompanyEmployees.Controllers
 {
     [Route("api/v1/users")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class UserController : ControllerBase
     {
         private readonly IRepositoryManager _repository;
         private readonly ILoggerManager _logger;
         private readonly IMapper _mapper;
 
-        public UsersController(IRepositoryManager repository, ILoggerManager logger, IMapper mapper)
+        public UserController(IRepositoryManager repository, ILoggerManager logger, IMapper mapper)
         {
             _repository = repository;
             _logger = logger;
@@ -46,7 +46,7 @@ namespace CompanyEmployees.Controllers
             {
                 var user = _repository.User.GetUser(id, trackChanges: false); if (user == null)
                 {
-                    _logger.LogInfo($"Organization with id: {id} doesn't exist in the database.");
+                    _logger.LogInfo($" User with id: {id} doesn't exist in the database.");
                     return NotFound();
                 }
                 else
