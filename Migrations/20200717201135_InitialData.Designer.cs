@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace SchoolAPI.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    [Migration("20200710225741_InitialData")]
+    [Migration("20200717201135_InitialData")]
     partial class InitialData
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -219,7 +219,7 @@ namespace SchoolAPI.Migrations
                         {
                             Id = new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"),
                             City = "Bloomfield",
-                            Country = "Austria",
+                            Country = "USA",
                             OrgName = "xyz org"
                         },
                         new

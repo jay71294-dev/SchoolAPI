@@ -217,7 +217,7 @@ namespace SchoolAPI.Migrations
                         {
                             Id = new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"),
                             City = "Bloomfield",
-                            Country = "Austria",
+                            Country = "USA",
                             OrgName = "xyz org"
                         },
                         new

@@ -198,7 +198,7 @@ namespace SchoolAPI.Migrations
                 columns: new[] { "OrganizationId", "City", "Country", "OrgName" },
                 values: new object[,]
                 {
-                    { new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), "Bloomfield", "Austria", "xyz org" },
+                    { new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), "Bloomfield", "USA", "xyz org" },
                     { new Guid("3d490a70-94ce-4d15-9494-5248280c2ce3"), "Lusaka", "ZM", "lmnop org" }
                 });
 
