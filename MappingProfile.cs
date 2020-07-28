@@ -2,7 +2,7 @@ using AutoMapper;
 using Entities.DataTransferObjects;
 using Entities.Models;
 
-namespace CompanyEmployees
+namespace SchoolAPI
 {
     public class MappingProfile : Profile
     {
@@ -12,7 +12,10 @@ namespace CompanyEmployees
                     .ForMember(c => c.FullAddress,
                         opt => opt.MapFrom(x => string.Join(' ', x.City, x.Country)));
 
-       
+            CreateMap<OrganizationForCreationDto, Organization>();
+            CreateMap<OrganizationForUpdateDto, Organization>();
+
+
         }
     }
 }
